@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Theme Toggle -->
+    <header class="dashboard-header">
+      <button
+        id="theme-toggle"
+        class="theme-toggle-btn"
+        aria-label="Toggle dark/light theme"
+        type="button"
+      >
+        🌙 Toggle Theme
+      </button>
+    </header>
+
+    <!-- Main Dashboard Layout -->
+    <main class="dashboard-main" id="dashboard">
+
+      <!-- Greeting Widget -->
+      <section id="greeting" class="widget" aria-labelledby="greeting-heading">
+        <h2 id="greeting-heading" class="sr-only">Greeting</h2>
+        <div id="greeting-time" aria-live="polite" aria-label="Current time"></div>
+        <div id="greeting-date" aria-label="Current date"></div>
+        <div id="greeting-message" aria-live="polite" aria-label="Greeting message"></div>
+        <div class="greeting-name-row">
+          <input
+            id="greeting-name-input"
+            type="text"
+            maxlength="50"
+            placeholder="Enter your name…"
+            aria-label="Your name for personalized greeting"
+          />
+          <button
+            id="greeting-name-save"
+            type="button"
+            aria-label="Save name"
+          >
+            Save
+          </button>
+          <button
+            id="greeting-name-clear"
+            type="button"
+            aria-label="Clear saved name"
+          >
+            Clear
+          </button>
+        </div>
+      </section>
+
+      <!-- Focus Timer Widget -->
+      <section id="focus-timer" class="widget" aria-labelledby="timer-heading">
+        <h2 id="timer-heading">Focus Timer</h2>
+        <div id="timer-display" class="timer-display" aria-live="assertive" aria-label="Timer countdown">25:00</div>
+        <div class="timer-duration-row">
+          <label for="timer-duration-input">Duration (min):</label>
+          <input
+            id="timer-duration-input"
+            type="number"
+            min="1"
+            max="99"
+            value="25"
+            aria-label="Timer duration in minutes"
+          />
+        </div>
+        <div class="timer-controls" role="group" aria-label="Timer controls">
+          <button id="timer-start" type="button" aria-label="Start timer">Start</button>
+          <button id="timer-stop" type="button" aria-label="Stop timer" disabled>Stop</button>
+          <button id="timer-reset" type="button" aria-label="Reset timer">Reset</button>
+        </div>
+      </section>
+
+      <!-- To-Do List Widget -->
+      <section id="todo-list" class="widget" aria-labelledby="todo-heading">
+        <h2 id="todo-heading">To-Do List</h2>
+        <form id="todo-add-form" aria-label="Add new task">
+          <input
+            id="todo-input"
+            type="text"
+            placeholder="New task…"
+            aria-label="New task title"
+            autocomplete="off"
+          />
+          <button type="submit" aria-label="Add task">Add</button>
+        </form>
+        <div class="todo-sort-controls" role="group" aria-label="Sort tasks">
+          <button id="todo-sort-alpha" type="button" aria-label="Sort tasks alphabetically A to Z">A–Z</button>
+          <button id="todo-sort-status" type="button" aria-label="Sort tasks by completion status">By Status</button>
+        </div>
+        <ul id="todo-items" aria-label="Task list" aria-live="polite"></ul>
+      </section>
+
+      <!-- Quick Links Widget -->
+      <section id="quick-links" class="widget" aria-labelledby="links-heading">
+        <h2 id="links-heading">Quick Links</h2>
+        <form id="links-add-form" aria-label="Add new quick link">
+          <input
+            id="links-label-input"
+            type="text"
+            maxlength="30"
+            placeholder="Label…"
+            aria-label="Link label"
+            autocomplete="off"
+          />
+          <input
+            id="links-url-input"
+            type="url"
+            placeholder="https://…"
+            aria-label="Link URL"
+            autocomplete="off"
+          />
+          <button type="submit" aria-label="Add link">Add Link</button>
+        </form>
+        <p id="links-validation-msg" class="validation-msg" role="alert" aria-live="assertive"></p>
+        <div id="links-container" aria-label="Quick links" aria-live="polite"></div>
+      </section>
+
+    </main>
+
+    <!-- localStorage unavailability warning (inserted by JS if needed) -->
+    <!-- <div id="storage-warning" role="alert" aria-live="assertive"></div> -->
+
+    <script src="js/app.js" defer></script>
+  </body>
+</html>

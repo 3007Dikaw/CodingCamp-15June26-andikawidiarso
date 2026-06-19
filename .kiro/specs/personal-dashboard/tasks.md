@@ -8,14 +8,14 @@ Implement a zero-dependency, single-page personal dashboard as three static file
 
 ## Tasks
 
-- [ ] 1. Set up project structure and HTML skeleton
+- [x] 1. Set up project structure and HTML skeleton
   - Create `index.html` with semantic widget containers: `#greeting`, `#focus-timer`, `#todo-list`, `#quick-links`, and the theme toggle button
   - Add `<link>` to `css/style.css` and `<script defer>` to `js/app.js` in `index.html`
   - Create empty `css/style.css` and `js/app.js` placeholder files
   - _Requirements: 9.4, 9.5, 10.1_
 
-- [ ] 2. Implement Storage module
-  - [ ] 2.1 Implement `Storage` module in `app.js`
+- [x] 2. Implement Storage module
+  - [x] 2.1 Implement `Storage` module in `app.js`
     - Write `Storage.init()` with write/read/delete probe in `try/catch` to set `Storage.available`
     - Write `Storage.get(key, fallback)` returning parsed JSON or fallback on error
     - Write `Storage.set(key, value)` serialising to JSON; no-op when `available === false`
@@ -28,8 +28,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any valid `Task[]` or `Link[]`, `Storage.set` then `Storage.get` SHALL return a deep-equal array
     - **Validates: Requirements 8.2, 8.3**
 
-- [ ] 3. Implement Theme Toggle
-  - [ ] 3.1 Implement `ThemeToggle` module in `app.js`
+- [x] 3. Implement Theme Toggle
+  - [x] 3.1 Implement `ThemeToggle` module in `app.js`
     - Write `ThemeToggle._applyTheme(theme)` adding/removing `dark` class on `document.documentElement` and persisting to `pd_theme`
     - Write `ThemeToggle._toggle()` reading current theme and calling `_applyTheme` with the opposite value
     - Write `ThemeToggle.init(buttonEl)` reading `pd_theme` from Storage (default `"light"`) and calling `_applyTheme` before first paint
@@ -40,8 +40,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any theme value (`"light"` or `"dark"`), after `_applyTheme(theme)`, `Storage.get("pd_theme")` SHALL return the same value
     - **Validates: Requirements 7.3, 7.4**
 
-- [ ] 4. Implement CSS theming foundation
-  - [ ] 4.1 Write CSS custom properties and base layout in `style.css`
+- [x] 4. Implement CSS theming foundation
+  - [x] 4.1 Write CSS custom properties and base layout in `style.css`
     - Define `:root` custom properties: `--color-bg`, `--color-text`, `--color-surface`, `--color-accent`, etc.
     - Define `html.dark` overrides for all custom properties
     - Write responsive grid/flex layout accommodating widths 320px–1920px without horizontal scroll
@@ -50,8 +50,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - Add card-style containers with spacing/borders to visually separate widgets
     - _Requirements: 7.1, 7.2, 9.1, 10.2, 10.3, 10.4, 10.5_
 
-- [ ] 5. Implement Greeting Widget
-  - [ ] 5.1 Implement `GreetingWidget` module in `app.js`
+- [x] 5. Implement Greeting Widget
+  - [x] 5.1 Implement `GreetingWidget` module in `app.js`
     - Write `GreetingWidget._getGreeting(hour)` mapping hour 0–23 to one of the four greeting strings
     - Write `GreetingWidget.tick()` creating a new `Date`, updating time (HH:MM), date (human-readable), and greeting DOM elements
     - Write `GreetingWidget._renderName()` reading `pd_name` from Storage and appending to greeting if present
@@ -69,8 +69,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any input string length > 50, stored value length SHALL be exactly 50; for length ≤ 50, stored value SHALL equal trimmed input
     - **Validates: Requirements 2.5, 2.6**
 
-- [ ] 6. Implement Focus Timer
-  - [ ] 6.1 Implement `FocusTimer` module in `app.js`
+- [x] 6. Implement Focus Timer
+  - [x] 6.1 Implement `FocusTimer` module in `app.js`
     - Write `FocusTimer._setDuration(minutes)` validating range [1, 99], persisting to `pd_timer_duration`, resetting display
     - Write `FocusTimer._render()` updating MM:SS display and enabling/disabling controls based on current state (`IDLE`, `RUNNING`, `PAUSED`, `DONE`)
     - Write `FocusTimer._tick()` decrementing remaining seconds, calling `_render()`, transitioning to `DONE` and calling `_notify()` at 0
@@ -85,8 +85,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any value outside [1, 99], `_setDuration` SHALL reject it and stored duration SHALL remain unchanged; for any value in [1, 99], it SHALL be stored
     - **Validates: Requirements 3.8, 3.9, 3.10**
 
-- [ ] 7. Implement To-Do List
-  - [ ] 7.1 Implement `TodoList` CRUD and render in `app.js`
+- [x] 7. Implement To-Do List
+  - [x] 7.1 Implement `TodoList` CRUD and render in `app.js`
     - Write `TodoList._addTask(title)` rejecting whitespace-only strings, generating an ID via `crypto.randomUUID()` with `Date.now()` fallback, pushing to `tasks[]`, persisting, and calling `_renderList()`
     - Write `TodoList._deleteTask(id)` filtering `tasks[]`, persisting, re-rendering
     - Write `TodoList._toggleComplete(id)` flipping `completed`, persisting, re-rendering
@@ -115,8 +115,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any existing task, after `_deleteTask(id)`, no entry in `pd_tasks` SHALL have that `id`
     - **Validates: Requirements 4.10**
 
-- [ ] 8. Implement Task Sorting and Drag-and-Drop
-  - [ ] 8.1 Implement sort functions and drag-and-drop in `app.js`
+- [x] 8. Implement Task Sorting and Drag-and-Drop
+  - [x] 8.1 Implement sort functions and drag-and-drop in `app.js`
     - Write `TodoList._sortAlpha()` sorting `tasks[]` A–Z by `title`, persisting, re-rendering
     - Write `TodoList._sortByStatus()` placing incomplete tasks before completed tasks, persisting, re-rendering
     - Write `TodoList._initDragAndDrop()` wiring native HTML5 `dragstart`, `dragover`, `drop` events on list items; on `drop`, reorder `tasks[]` to match new DOM order, persist, re-render
@@ -133,8 +133,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any `tasks[]`, after `_sortByStatus()`, every task with `completed === false` SHALL precede every task with `completed === true` in the stored array
     - **Validates: Requirements 5.5, 5.6**
 
-- [ ] 9. Implement Quick Links
-  - [ ] 9.1 Implement `QuickLinks` module in `app.js`
+- [x] 9. Implement Quick Links
+  - [x] 9.1 Implement `QuickLinks` module in `app.js`
     - Write `QuickLinks._validateUrl(url)` wrapping the `URL` constructor in `try/catch`, returning `true` only for `http:` or `https:` protocols
     - Write `QuickLinks._addLink(label, url)` rejecting empty labels or invalid URLs (showing inline validation messages), truncating label at 30 chars, generating ID, pushing to `links[]`, persisting, calling `_renderLinks()`
     - Write `QuickLinks._deleteLink(id)` filtering `links[]`, persisting, re-rendering
@@ -153,8 +153,8 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - For any valid `http`/`https` URL string, `_validateUrl` SHALL return `true`; for any other string, it SHALL return `false`
     - **Validates: Requirements 6.4, 6.5**
 
-- [ ] 10. Implement `App.init()` and wire all modules
-  - [ ] 10.1 Write `App.init()` in `app.js`
+- [x] 10. Implement `App.init()` and wire all modules
+  - [x] 10.1 Write `App.init()` in `app.js`
     - Call `Storage.init()` first
     - Call `ThemeToggle.init()` before any widget renders to prevent flash of unstyled content
     - Call `GreetingWidget.init()`, `FocusTimer.init()`, `TodoList.init()`, `QuickLinks.init()` with their respective container elements
@@ -162,11 +162,11 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - Register `App.init` on `DOMContentLoaded`
     - _Requirements: 8.3, 9.2, 9.3_
 
-- [ ] 11. Checkpoint — Ensure all modules are wired and page loads correctly
+- [x] 11. Checkpoint — Ensure all modules are wired and page loads correctly
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 12. Style all widgets
-  - [ ] 12.1 Style Greeting Widget, Focus Timer, To-Do List, and Quick Links in `style.css`
+- [x] 12. Style all widgets
+  - [x] 12.1 Style Greeting Widget, Focus Timer, To-Do List, and Quick Links in `style.css`
     - Write widget-level styles using CSS custom properties for both themes
     - Style task items with completion indicator, edit/delete controls, and drag handle
     - Style Quick Link cards as clickable buttons with delete controls
@@ -175,7 +175,7 @@ Implement a zero-dependency, single-page personal dashboard as three static file
     - Style the localStorage unavailability warning banner
     - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5_
 
-- [ ] 13. Final checkpoint — Ensure all tests pass
+- [-] 13. Final checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ---
